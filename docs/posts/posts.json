@@ -1,0 +1,22 @@
+[
+  {
+    "path": "posts/2022-02-20-eda-in-python-with-klib/",
+    "title": "EDA in Python with klib",
+    "description": "The klib package can make EDA using Python easier and fun!",
+    "author": [
+      {
+        "name": "Abhijit Dasgupta",
+        "url": {}
+      }
+    ],
+    "date": "2022-02-20",
+    "categories": [
+      "Python",
+      "dataviz"
+    ],
+    "contents": "\n\nThis post is a distillation of the klib posts found here and here. Both are Medium and might be behind a paywall for you. I discovered this package though colleagues at work who were using this for data cleaning and some EDA\n\nThe klib package is meant to make data cleaning, visualization and some EDA easier on pandas DataFrame objects. It provides a set of functions that can be gainfully utilized at the beginning of a data science project both for personal understanding and to provide visualizations of the data.\nWe will be using the msleep data from R’s ggplot2 package. This can be accessed in Python as a pandas DataFrame using the rdatasets package.\n\nimport pandas as pd\nfrom rdatasets import data\nimport matplotlib.pyplot as plt\nimport klib\n\nmsleep = data(\"ggplot2\", \"msleep\")\nmsleep.head()\n                         name       genus   vore  ... awake  brainwt   bodywt\n0                     Cheetah    Acinonyx  carni  ...  11.9      NaN   50.000\n1                  Owl monkey       Aotus   omni  ...   7.0  0.01550    0.480\n2             Mountain beaver  Aplodontia  herbi  ...   9.6      NaN    1.350\n3  Greater short-tailed shrew     Blarina   omni  ...   9.1  0.00029    0.019\n4                         Cow         Bos  herbi  ...  20.0  0.42300  600.000\n\n[5 rows x 11 columns]\n\nData quality: Missing values\nYou can create a heatmap of your data that looks at the missing value structure in your data. This is very useful for looking at the extent of missing data, missing data patterns, and some statistics that can help you judge whether you need to do something about missing data.\n\nklib.missingval_plot(msleep);\nplt.show()\n\n\n\n\n\n",
+    "preview": "posts/2022-02-20-eda-in-python-with-klib/eda-in-python-with-klib_files/figure-html5/unnamed-chunk-2-1.png",
+    "last_modified": "2022-02-20T00:51:19-05:00",
+    "input_file": "eda-in-python-with-klib.knit.md"
+  }
+]
