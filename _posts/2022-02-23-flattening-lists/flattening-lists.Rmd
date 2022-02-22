@@ -1,0 +1,131 @@
+---
+title: "Flattening lists"
+description: |
+  In this post, I explore various ways of flattening hierarchical lists in 
+  Python, contrasting with the built-in `unlist` function in R
+author:
+  - name: Abhijit Dasgupta
+    url: {}
+date: 2022-02-23
+output:
+  distill::distill_article:
+    self_contained: false
+draft: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introducing the problem
+
+Today, we will focus on the results of splitting text fields by a delimiter
+in R and Python. This will typically result in a **list of lists**. However, 
+that would not do for my purpose. 
+
+The situation I was facing was to parse a text field containing one or more comma-separated disease names that were afflicting each patient in a study, and I wanted
+to make a frequency distribution of all the diseases among patients in the study, knowing
+that each disease would only appear at most once per patient. So I had to **flatten**
+the list of lists I would get by parsing the text field, so that I could then 
+send it to a tabulation function like `table` in R or `numpy.unique(..., return_counts=True)` in Python.
+
+# First attempt
+
+Let's start with a text array containing the data in question.This data is an
+excerpt from a dataset provided for the [PKDD '99 Discovery Challenge](https://sorry.vse.cz/~berka/challenge/pkdd1999/tsumoto.htm)
+
+```{r}
+dat = readr::read_csv('dat.csv')
+head(dat)
+```
+
+There are comma-separated diseases here. We'll ignore the obvious need to clean
+the text field of extraneous spaces for now. Let's try separating out the different
+diseases.
+
+```{r}
+stringr::str_split(dat$Diagnosis, ",")[1:5]
+```
+
+We see that this is a list of vectors (so we can nominally consider it a list of lists), 
+some of length 1 and some with length more than 1. In order to tabulate the data,
+all we need is the `unlist` function.
+
+```{r}
+table(unlist(stringr::str_split(dat$Diagnosis, ",")))
+```
+
+#### Voila!!!
+
+# Doing this in Python
+
+It turns out, doing a similar operation would also get you a list of lists
+in Python
+
+```{python}
+import pandas as pd
+dat = pd.read_csv('dat.csv')
+d = dat.Diagnosis.str.split(",")
+d[:5]
+```
+It turns out, we don't have an `unlist` function in Python!!
+
+## Finding a resource
+Google being the all-encompassing deity of knowledge, I turned there and 
+found [this post](https://www.pythonpool.com/flatten-list-python/) describing 
+25 ways to flatten a list (and obviously a Simon and Garfunkel fan).
+There are a couple of one-liners in that post that I'll highlight here.
+
+## The common method
+
+Searches for this problem most commonly provide the following solution, either 
+as a for-loop or a list comprehension
+
+```{python}
+flatten_list = []
+for sublist in d:
+	for item in sublist:
+		flatten_list.append(item)
+flatten_list[:8]
+```
+
+## Functional programming and `reduce`
+
+```{python}
+from functools import reduce
+reduce(list.__add__, d)[:8]
+```
+Functional programming provides functions _that act on functions_. Here, the 
+`reduce` function applies the `list.__add__` function recursively to successive
+elements of `d`, noting that _adding_ two lists serves to concatenate them in 
+Python.
+
+A variant on this theme that works is 
+
+```{python}
+sum(d, [])[:8]
+```
+since the `sum` function applies addition recursively from a starting value, which is
+the second argument. Here the addition operation is overloaded for lists to 
+concatenate lists.
+
+## Using `pandas`
+
+**pandas** does have a `flatten` function hidden in its depths
+
+```{python}
+from pandas.core.common import flatten
+list(flatten(d))[:8]
+```
+
+## Using `itertools`
+
+```{python}
+import itertools
+list(itertools.chain(*d))[:8]
+```
+
+
+
+
