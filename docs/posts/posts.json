@@ -1,22 +1,21 @@
 [
   {
-    "path": "posts/2022-02-20-eda-in-python-with-klib/",
-    "title": "EDA in Python with klib",
-    "description": "The klib package can make EDA using Python easier and fun!",
+    "path": "posts/2022-02-21-frequency-counts-from-lists/",
+    "title": "Frequency counts from lists",
+    "description": "In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**",
     "author": [
       {
         "name": "Abhijit Dasgupta",
         "url": {}
       }
     ],
-    "date": "2022-02-20",
+    "date": "2022-02-21",
     "categories": [
-      "Python",
-      "dataviz"
+      "Python"
     ],
-    "contents": "\n\nThis post is a distillation of the klib posts found here and here. Both are Medium and might be behind a paywall for you. I discovered this package though colleagues at work who were using this for data cleaning and some EDA\n\nThe klib package is meant to make data cleaning, visualization and some EDA easier on pandas DataFrame objects. It provides a set of functions that can be gainfully utilized at the beginning of a data science project both for personal understanding and to provide visualizations of the data.\nWe will be using the msleep data from R’s ggplot2 package. This can be accessed in Python as a pandas DataFrame using the rdatasets package.\n\nimport pandas as pd\nfrom rdatasets import data\nimport matplotlib.pyplot as plt\nimport klib\n\nmsleep = data(\"ggplot2\", \"msleep\")\nmsleep.head()\n                         name       genus   vore  ... awake  brainwt   bodywt\n0                     Cheetah    Acinonyx  carni  ...  11.9      NaN   50.000\n1                  Owl monkey       Aotus   omni  ...   7.0  0.01550    0.480\n2             Mountain beaver  Aplodontia  herbi  ...   9.6      NaN    1.350\n3  Greater short-tailed shrew     Blarina   omni  ...   9.1  0.00029    0.019\n4                         Cow         Bos  herbi  ...  20.0  0.42300  600.000\n\n[5 rows x 11 columns]\n\nData quality: Missing values\nYou can create a heatmap of your data that looks at the missing value structure in your data. This is very useful for looking at the extent of missing data, missing data patterns, and some statistics that can help you judge whether you need to do something about missing data.\n\nklib.missingval_plot(msleep);\nplt.show()\n\n\n\n\n\n",
-    "preview": "posts/2022-02-20-eda-in-python-with-klib/eda-in-python-with-klib_files/figure-html5/unnamed-chunk-2-1.png",
-    "last_modified": "2022-02-20T00:51:19-05:00",
-    "input_file": "eda-in-python-with-klib.knit.md"
+    "contents": "\nHow to you compute a frequency table from a list in Python? We’ll use a list named dat which is created by sampling the first 5 letters.\n\nimport string\nimport random\n\ndat = random.choices(string.ascii_lowercase[:5], k = 100)\n\nOne way, that I use all the time, is\n\nimport pandas as pd\npd.Series(dat).value_counts()\nb    22\nd    22\ne    22\nc    21\na    13\ndtype: int64\n\nBut can you do this without pandas? Turns out, you can\nUsing collections\n\nimport collections\npd.Series(collections.Counter(dat))\nb    22\nc    21\nd    22\ne    22\na    13\ndtype: int64\n\nThis creates a Series out of the output of Counter, which is a dict-like object.\nUsing numpy\n\nimport numpy as np\nans = np.unique(dat, return_counts=True)\n\nThis returns a tuple, which can be converted several ways, per this StackOverflow answer\n\npd.DataFrame(np.column_stack(ans), columns = ['item','count'])\n  item count\n0    a    13\n1    b    22\n2    c    21\n3    d    22\n4    e    22\npd.DataFrame(np.vstack(ans).T, columns = ['item','count'])\n  item count\n0    a    13\n1    b    22\n2    c    21\n3    d    22\n4    e    22\npd.DataFrame(np.transpose(ans), columns = ['item','count'])\n  item count\n0    a    13\n1    b    22\n2    c    21\n3    d    22\n4    e    22\n\nTimings\nLet’s look at timings for each of these methods.\n\nimport timeit\nmysetup = \"\"\"\nimport pandas as pd\nimport numpy as np\nimport collections, random, string\ndat = random.choices(string.ascii_lowercase[:5], k=1000)\n\"\"\"\n\n\ntimeit.timeit('pd.Series(dat).value_counts()', setup=mysetup, number=1000)/1000\n0.0005386214850000002\ntimeit.timeit('pd.Series(collections.Counter(dat))', setup=mysetup, number=1000)/1000\n0.00024093244599999997\ntimeit.timeit('pd.DataFrame(np.column_stack(np.unique(dat, return_counts=True)))', setup=mysetup, number=1000)/1000\n0.0002909272760000001\ntimeit.timeit('pd.DataFrame(np.vstack(np.unique(dat, return_counts=True)).T)', setup=mysetup, number=1000)/1000\n0.0002756786\ntimeit.timeit('pd.DataFrame(np.transpose(np.unique(dat, return_counts=True)))', setup=mysetup, number=1000)/1000\n0.00027493610299999995\n\nSo we can see that my usual strategy is half as efficient as the other strategies described in this post !!\n\n\n\n",
+    "preview": {},
+    "last_modified": "2022-02-22T00:37:32-05:00",
+    "input_file": {}
   }
 ]
