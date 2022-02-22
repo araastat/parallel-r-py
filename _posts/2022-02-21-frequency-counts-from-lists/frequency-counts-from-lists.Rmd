@@ -9,6 +9,8 @@ date: 2022-02-21
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
+    toc_float: true
 draft: false
 categories:
   - Python
@@ -20,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(reticulate)
 reticulate::use_condaenv("anly503", required=TRUE)
 ```
+
+# Introducing the problem
 
 How to you compute a frequency table from a list in Python? We’ll use a list named `dat` which is created by sampling the first 5 letters. 
 
@@ -40,7 +44,9 @@ pd.Series(dat).value_counts()
 
 But can you do this without pandas? Turns out, you can
 
-### Using collections
+# Better ways
+
+## Using collections
 
 ```{python}
 import collections
@@ -48,7 +54,7 @@ pd.Series(collections.Counter(dat))
 ```
 This creates a Series out of the output of Counter, which is a dict-like object.
 
-### Using numpy
+## Using numpy
 ```{python}
 import numpy as np
 ans = np.unique(dat, return_counts=True)
@@ -72,6 +78,7 @@ import pandas as pd
 import numpy as np
 import collections, random, string
 dat = random.choices(string.ascii_lowercase[:5], k=1000)
+dat1 = pd.Series(dat)
 """
 ```
 
@@ -84,3 +91,13 @@ timeit.timeit('pd.DataFrame(np.transpose(np.unique(dat, return_counts=True)))', 
 ```
 
 So we can see that my _usual_ strategy is half as efficient as the other strategies described in this post !!
+
+What about if we start with a pandas Series anyway, and forgo the casting into a pandas structure?
+
+```{python}
+timeit.timeit("dat1.value_counts()", setup=mysetup, number=1000)/1000
+timeit.timeit("collections.Counter(dat1)", setup=mysetup, number=1000)/1000
+```
+
+Even here, the **pandas** method is at quite the disadvantage.
+
