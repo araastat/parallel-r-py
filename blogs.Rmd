@@ -9,3 +9,5 @@ title: Blogs I read
 - [R Views](https://rviews.rstudio.com/)
 - [Statistical Thinking](https://www.fharrell.com/post/)
 - [Flowing Data](https://flowingdata.com)
+- [The Mockup Blog](https://themockup.blog)
+
