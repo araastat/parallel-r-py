@@ -21,7 +21,7 @@ library(reticulate)
 reticulate::use_condaenv('anly503', required = TRUE)
 ```
 
-> This post is a distillation of the **klib** posts found [here](https://medium.com/towards-data-science/speed-up-your-data-cleaning-and-preprocessing-with-klib-97191d320f80) and [here](https://medium.com/towards-data-science/data-preparation-with-klib-ec4add15303a). Both are [Medium](https://medium.com) and might be behind a paywall for you. I discovered this package though colleagues at work who were using this for data cleaning and some EDA
+> This post is a distillation of the **klib** posts found [here](https://medium.com/towards-data-science/speed-up-your-data-cleaning-and-preprocessing-with-klib-97191d320f80) and [here](https://medium.com/towards-data-science/data-preparation-with-klib-ec4add15303a). Both are [Medium](https://medium.com) posts and might be behind a paywall for you. I discovered this package though colleagues at work who were using this for data cleaning and some EDA
 
 The [**klib**](https://klib.readthedocs.io/en/latest/examples.html) package is 
 meant to make data cleaning, visualization and some EDA easier on **pandas** `DataFrame`
@@ -54,5 +54,21 @@ klib.missingval_plot(msleep);
 plt.show()
 ```
 
+## Data quality: distributions
+
+**klib** has nice functions for visualizing distributions of both
+categorical and continuous variables in a dataset. 
+
+### Categorical variables
+
+```{python, echo=T}
+klib.cat_plot(msleep);
+plt.show()
+```
+
+```{python, echo=T, eval=F}
+ax = klib.dist_plot(msleep['sleep_total']);
+plt.show(ax[0])
+```
 
 

@@ -87,37 +87,37 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>EDA in Python with klib</title>
+  <title>Frequency counts from lists</title>
 
-  <meta property="description" itemprop="description" content="The klib package can make EDA using Python easier and fun!"/>
+  <meta property="description" itemprop="description" content="In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**"/>
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2022-02-20"/>
-  <meta property="article:created" itemprop="dateCreated" content="2022-02-20"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-02-21"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-02-21"/>
   <meta name="article:author" content="Abhijit Dasgupta"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="EDA in Python with klib"/>
+  <meta property="og:title" content="Frequency counts from lists"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="The klib package can make EDA using Python easier and fun!"/>
+  <meta property="og:description" content="In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**"/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="EDA in Python with klib"/>
-  <meta property="twitter:description" content="The klib package can make EDA using Python easier and fun!"/>
+  <meta property="twitter:title" content="Frequency counts from lists"/>
+  <meta property="twitter:description" content="In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","categories"]}},"value":[{"type":"character","attributes":{},"value":["EDA in Python with klib"]},{"type":"character","attributes":{},"value":["The klib package can make EDA using Python easier and fun!\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Abhijit Dasgupta"]}]}]},{"type":"character","attributes":{},"value":["2022-02-20"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["Python","dataviz"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","categories"]}},"value":[{"type":"character","attributes":{},"value":["Frequency counts from lists"]},{"type":"character","attributes":{},"value":["In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Abhijit Dasgupta"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-21"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["Python"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["eda-in-python-with-klib_files/anchor-4.2.2/anchor.min.js","eda-in-python-with-klib_files/bowser-1.9.3/bowser.min.js","eda-in-python-with-klib_files/distill-2.2.21/template.v2.js","eda-in-python-with-klib_files/figure-html5/unnamed-chunk-2-1.png","eda-in-python-with-klib_files/figure-html5/unnamed-chunk-3-3.png","eda-in-python-with-klib_files/header-attrs-2.11/header-attrs.js","eda-in-python-with-klib_files/jquery-3.6.0/jquery-3.6.0.js","eda-in-python-with-klib_files/jquery-3.6.0/jquery-3.6.0.min.js","eda-in-python-with-klib_files/jquery-3.6.0/jquery-3.6.0.min.map","eda-in-python-with-klib_files/popper-2.6.0/popper.min.js","eda-in-python-with-klib_files/tippy-6.2.7/tippy-bundle.umd.min.js","eda-in-python-with-klib_files/tippy-6.2.7/tippy-light-border.css","eda-in-python-with-klib_files/tippy-6.2.7/tippy.css","eda-in-python-with-klib_files/tippy-6.2.7/tippy.umd.min.js","eda-in-python-with-klib_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["frequency-counts-from-lists_files/anchor-4.2.2/anchor.min.js","frequency-counts-from-lists_files/bowser-1.9.3/bowser.min.js","frequency-counts-from-lists_files/distill-2.2.21/template.v2.js","frequency-counts-from-lists_files/header-attrs-2.11/header-attrs.js","frequency-counts-from-lists_files/jquery-3.6.0/jquery-3.6.0.js","frequency-counts-from-lists_files/jquery-3.6.0/jquery-3.6.0.min.js","frequency-counts-from-lists_files/jquery-3.6.0/jquery-3.6.0.min.map","frequency-counts-from-lists_files/popper-2.6.0/popper.min.js","frequency-counts-from-lists_files/tippy-6.2.7/tippy-bundle.umd.min.js","frequency-counts-from-lists_files/tippy-6.2.7/tippy-light-border.css","frequency-counts-from-lists_files/tippy-6.2.7/tippy.css","frequency-counts-from-lists_files/tippy-6.2.7/tippy.umd.min.js","frequency-counts-from-lists_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1438,16 +1438,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="eda-in-python-with-klib_files/header-attrs-2.11/header-attrs.js"></script>
-  <script src="eda-in-python-with-klib_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <script src="eda-in-python-with-klib_files/popper-2.6.0/popper.min.js"></script>
-  <link href="eda-in-python-with-klib_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="eda-in-python-with-klib_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="eda-in-python-with-klib_files/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="eda-in-python-with-klib_files/anchor-4.2.2/anchor.min.js"></script>
-  <script src="eda-in-python-with-klib_files/bowser-1.9.3/bowser.min.js"></script>
-  <script src="eda-in-python-with-klib_files/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="eda-in-python-with-klib_files/distill-2.2.21/template.v2.js"></script>
+  <script src="frequency-counts-from-lists_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="frequency-counts-from-lists_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="frequency-counts-from-lists_files/popper-2.6.0/popper.min.js"></script>
+  <link href="frequency-counts-from-lists_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="frequency-counts-from-lists_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="frequency-counts-from-lists_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="frequency-counts-from-lists_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="frequency-counts-from-lists_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="frequency-counts-from-lists_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="frequency-counts-from-lists_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
@@ -1459,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"EDA in Python with klib","description":"The klib package can make EDA using Python easier and fun!","authors":[{"author":"Abhijit Dasgupta","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-02-20T00:00:00.000-05:00","citationText":"Dasgupta, 2022"}
+{"title":"Frequency counts from lists","description":"In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**","authors":[{"author":"Abhijit Dasgupta","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-02-21T00:00:00.000-05:00","citationText":"Dasgupta, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1469,61 +1469,107 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>EDA in Python with klib</h1>
+<h1>Frequency counts from lists</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
 <div class="dt=tag">Python</div>
-<div class="dt=tag">dataviz</div>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>The klib package can make EDA using Python easier and fun!</p></p>
+<p><p>In this post I look at better ways of obtaining frequency distributions from a Python list, using methods <strong>other than pandas</strong></p></p>
 </div>
 
 <div class="d-byline">
-  Abhijit Dasgupta  
+  Abhijit Dasgupta true 
   
-<br/>2022-02-20
+<br/>2022-02-21
 </div>
 
 <div class="d-article">
-<blockquote>
-<p>This post is a distillation of the <strong>klib</strong> posts found <a href="https://medium.com/towards-data-science/speed-up-your-data-cleaning-and-preprocessing-with-klib-97191d320f80">here</a> and <a href="https://medium.com/towards-data-science/data-preparation-with-klib-ec4add15303a">here</a>. Both are <a href="https://medium.com">Medium</a> posts and might be behind a paywall for you. I discovered this package though colleagues at work who were using this for data cleaning and some EDA</p>
-</blockquote>
-<p>The <a href="https://klib.readthedocs.io/en/latest/examples.html"><strong>klib</strong></a> package is meant to make data cleaning, visualization and some EDA easier on <strong>pandas</strong> <code>DataFrame</code> objects. It provides a set of functions that can be gainfully utilized at the beginning of a data science project both for personal understanding and to provide visualizations of the data.</p>
-<p>We will be using the <code>msleep</code> data from R’s <strong>ggplot2</strong> package. This can be accessed in Python as a <strong>pandas</strong> <code>DataFrame</code> using the <strong>rdatasets</strong> package.</p>
+<p>How to you compute a frequency table from a list in Python? We’ll use a list named <code>dat</code> which is created by sampling the first 5 letters.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdatasets <span class="im">import</span> data</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> klib</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>msleep <span class="op">=</span> data(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;msleep&quot;</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>msleep.head()</span></code></pre></div>
-<pre><code>                         name       genus   vore  ... awake  brainwt   bodywt
-0                     Cheetah    Acinonyx  carni  ...  11.9      NaN   50.000
-1                  Owl monkey       Aotus   omni  ...   7.0  0.01550    0.480
-2             Mountain beaver  Aplodontia  herbi  ...   9.6      NaN    1.350
-3  Greater short-tailed shrew     Blarina   omni  ...   9.1  0.00029    0.019
-4                         Cow         Bos  herbi  ...  20.0  0.42300  600.000
-
-[5 rows x 11 columns]</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> random.choices(string.ascii_lowercase[:<span class="dv">5</span>], k <span class="op">=</span> <span class="dv">100</span>)</span></code></pre></div>
 </div>
-<h2 id="data-quality-missing-values">Data quality: Missing values</h2>
-<p>You can create a heatmap of your data that looks at the missing value structure in your data. This is very useful for looking at the extent of missing data, missing data patterns, and some statistics that can help you judge whether you need to do something about missing data.</p>
+<p>One way, that I use all the time, is</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>klib.missingval_plot(msleep)<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="eda-in-python-with-klib_files/figure-html5/unnamed-chunk-2-1.png" width="1920" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.Series(dat).value_counts()</span></code></pre></div>
+<pre><code>b    22
+d    22
+e    22
+c    21
+a    13
+dtype: int64</code></pre>
 </div>
-<h2 id="data-quality-distributions">Data quality: distributions</h2>
-<p><strong>klib</strong> has nice functions for visualizing distributions of both categorical and continuous variables in a dataset.</p>
-<h3 id="categorical-variables">Categorical variables</h3>
+<p>But can you do this without pandas? Turns out, you can</p>
+<h3 id="using-collections">Using collections</h3>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>klib.cat_plot(msleep)<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="eda-in-python-with-klib_files/figure-html5/unnamed-chunk-3-3.png" width="1728" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pd.Series(collections.Counter(dat))</span></code></pre></div>
+<pre><code>b    22
+c    21
+d    22
+e    22
+a    13
+dtype: int64</code></pre>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>This creates a Series out of the output of Counter, which is a dict-like object.</p>
+<h3 id="using-numpy">Using numpy</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ans <span class="op">=</span> np.unique(dat, return_counts<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+</div>
+<p>This returns a tuple, which can be converted several ways, per <a href="https://stackoverflow.com/a/39087209">this StackOverflow answer</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.column_stack(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
+<pre><code>  item count
+0    a    13
+1    b    22
+2    c    21
+3    d    22
+4    e    22</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.vstack(ans).T, columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
+<pre><code>  item count
+0    a    13
+1    b    22
+2    c    21
+3    d    22
+4    e    22</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.transpose(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
+<pre><code>  item count
+0    a    13
+1    b    22
+2    c    21
+3    d    22
+4    e    22</code></pre>
+</div>
+<h2 id="timings">Timings</h2>
+<p>Let’s look at timings for each of these methods.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mysetup <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">import pandas as pd</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">import numpy as np</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">import collections, random, string</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">dat = random.choices(string.ascii_lowercase[:5], k=1000)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(dat).value_counts()&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.0005386214850000002</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(collections.Counter(dat))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.00024093244599999997</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.column_stack(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.0002909272760000001</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.vstack(np.unique(dat, return_counts=True)).T)&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.0002756786</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.transpose(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.00027493610299999995</code></pre>
+</div>
+<p>So we can see that my <em>usual</em> strategy is half as efficient as the other strategies described in this post !!</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

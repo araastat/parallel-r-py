@@ -1,0 +1,86 @@
+---
+title: "Frequency counts from lists"
+description: |
+  In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**
+author:
+  - name: Abhijit Dasgupta
+    url: {}
+date: 2022-02-21
+output:
+  distill::distill_article:
+    self_contained: false
+draft: false
+categories:
+  - Python
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+reticulate::use_condaenv("anly503", required=TRUE)
+```
+
+How to you compute a frequency table from a list in Python? We’ll use a list named `dat` which is created by sampling the first 5 letters. 
+
+```{python}
+import string
+import random
+
+dat = random.choices(string.ascii_lowercase[:5], k = 100)
+```
+
+
+One way, that I use all the time, is 
+
+```{python}
+import pandas as pd
+pd.Series(dat).value_counts()
+```
+
+But can you do this without pandas? Turns out, you can
+
+### Using collections
+
+```{python}
+import collections
+pd.Series(collections.Counter(dat))
+```
+This creates a Series out of the output of Counter, which is a dict-like object.
+
+### Using numpy
+```{python}
+import numpy as np
+ans = np.unique(dat, return_counts=True)
+```
+This returns a tuple, which can be converted several ways, per [this StackOverflow answer](https://stackoverflow.com/a/39087209)
+
+```{python}
+pd.DataFrame(np.column_stack(ans), columns = ['item','count'])
+pd.DataFrame(np.vstack(ans).T, columns = ['item','count'])
+pd.DataFrame(np.transpose(ans), columns = ['item','count'])
+```
+
+## Timings
+
+Let's look at timings for each of these methods.
+
+```{python}
+import timeit
+mysetup = """
+import pandas as pd
+import numpy as np
+import collections, random, string
+dat = random.choices(string.ascii_lowercase[:5], k=1000)
+"""
+```
+
+```{python}
+timeit.timeit('pd.Series(dat).value_counts()', setup=mysetup, number=1000)/1000
+timeit.timeit('pd.Series(collections.Counter(dat))', setup=mysetup, number=1000)/1000
+timeit.timeit('pd.DataFrame(np.column_stack(np.unique(dat, return_counts=True)))', setup=mysetup, number=1000)/1000
+timeit.timeit('pd.DataFrame(np.vstack(np.unique(dat, return_counts=True)).T)', setup=mysetup, number=1000)/1000
+timeit.timeit('pd.DataFrame(np.transpose(np.unique(dat, return_counts=True)))', setup=mysetup, number=1000)/1000
+```
+
+So we can see that my _usual_ strategy is half as efficient as the other strategies described in this post !!

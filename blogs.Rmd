@@ -1,0 +1,11 @@
+---
+title: Blogs I read
+---
+
+- [R-Bloggers](https://www.r-bloggers.com)
+- [Python-Bloggers](https://www.python-bloggers.com)
+- [Simply Statistics](http://simplystatistics.org/)
+- [Variance Explained](http://varianceexplained.org/)
+- [R Views](https://rviews.rstudio.com/)
+- [Statistical Thinking](https://www.fharrell.com/post/)
+- [Flowing Data](https://flowingdata.com)

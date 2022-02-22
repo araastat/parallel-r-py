@@ -1,9 +1,76 @@
 ---
-title: "About this blog"
-description: |
-  Some additional details about the blog
+title: "About myself, my interests and this blog"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+## About me
+
+I'm a trained biostatistician who got interested in computer science, machine
+learning, and what is now called _data science_ first while working on
+bioinformatics problems in the 00s. It seemed to me that the confluence of
+predictive modeling, rigorous statistics, and study design would be exciting,
+powerful and useful. On the way I picked up an interest and fondness for data
+visualization as a storytelling tool.
+
+After my doctoral work at the [University of
+Washington](https://www.biostat.washington.edu) and postdoctoral training at the
+[National Cancer Institute](https://dceg.cancer.gov), where I learned about
+epidemiologic studies, study design and bioinformatics, I spent a few years at
+[Thomas Jefferson
+University](https://research.jefferson.edu/labs/core-services/biostatistics.html)
+supporting the Kimmel Cancer Center, before coming back to Washington DC. The
+next decade were spent back at NIH in the [National Institute for Arthritis,
+Musculoskeletal and Skin Diseases](https://www.niams.nih.gov) working in
+outcomes research, epidemiology and administrative databases for rheumatology
+research, particularly rheumatoid arthritis, lupus and ankolysing spondylitis. I
+then changed paths and joined [AstraZeneca](https://www.astrazeneca.com) as a
+data scientist supporting Oncology R&D, thus completing the trifecta of
+academia, government and industry. During this time, I also consulted widely,
+helping with workforce optimization (USPS), signal processing, business
+analytics and grants; I co-founded a health sensor startup,
+[Zansors](https://www.zansors.com) along the way.
+
+Over the years, as my hair has turned greyer, I have increasing interests in
+teaching and mentoring, having taught aspects of statistics and data science in
+R and Python for many years across government ([FAES @
+NIH](https://education.faes.org), State Department), industry (Freddie Mac,
+Brookings Institute, Open Health Group/Pharmerit) and academia ([Georgetown
+University](https://analytics.georgetown.edu), George Mason University). Along
+with some friends in the DC area, I helped found the [Statistical Programming
+DC](http://www.meetup.com/stats-prog-dc) meetup, which started in a conference
+room in Rockville, MD and expanded to the [Data Community
+DC](https://www.datacommunitydc.org) with over 15,000 members in the DC area.
+
+Outside of all the technical stuff, I love spending time with my family and our
+golden retriever,learning things, reading books, and working on and behind the
+stage in community theater. Over the years, my shower has witnessed an expanded
+repertoire of singing, promoted by my childrens' interests in musical theater.
+Through all of it is my aikido practice of over 25 years, which continues to
+teach me about life and the realms of endless possibilities of the human mind
+and body.
+
+## About this blog
+
+When doing data science work, I consider [R](https://www.r-project.org) my first
+language and [Python](https://www.python.org) my _1.5th_ language. I use both on
+a daily basis, and interact with both to create bilingual data science pipelines
+and workflows.
+
+I continue to learn and grow and develop _better ways_ of doing things both
+individually and collaboratively, and to be a more effective communicator of
+data science. One of the many ways I learn is to find ways of doing something in
+Python that I know how to do in R and _vice versa_. This blog has germinated
+with that idea of parallelism between R and Python, but promises to expand
+beyond that better ways of doing things in either, explore data visualization and
+other communication and storytelling devices, utilizing other resources,
+and occasionally ruminating on issues and topics that I come across in the
+application of data science.
+
+This blog serves as a journal to capture ideas, a medium to improve
+communcation, and perhaps a way to dessiminate knowledge and ideas that some
+might find useful. Happy you're here to share this journey...
+
+
