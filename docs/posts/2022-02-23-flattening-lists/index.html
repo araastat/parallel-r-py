@@ -87,38 +87,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Paralleling R and Python: Frequency counts from lists</title>
+<title>Paralleling R and Python: Flattening lists</title>
 
-<meta property="description" itemprop="description" content="In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**"/>
+<meta property="description" itemprop="description" content="In this post, I explore various ways of flattening hierarchical lists in &#10;Python, contrasting with the built-in `unlist` function in R"/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2022-02-21"/>
-<meta property="article:created" itemprop="dateCreated" content="2022-02-21"/>
+<meta property="article:published" itemprop="datePublished" content="2022-02-23"/>
+<meta property="article:created" itemprop="dateCreated" content="2022-02-23"/>
 <meta name="article:author" content="Abhijit Dasgupta"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Paralleling R and Python: Frequency counts from lists"/>
+<meta property="og:title" content="Paralleling R and Python: Flattening lists"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**"/>
+<meta property="og:description" content="In this post, I explore various ways of flattening hierarchical lists in &#10;Python, contrasting with the built-in `unlist` function in R"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Paralleling R and Python"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Paralleling R and Python: Frequency counts from lists"/>
-<meta property="twitter:description" content="In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**"/>
+<meta property="twitter:title" content="Paralleling R and Python: Flattening lists"/>
+<meta property="twitter:description" content="In this post, I explore various ways of flattening hierarchical lists in &#10;Python, contrasting with the built-in `unlist` function in R"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","categories"]}},"value":[{"type":"character","attributes":{},"value":["Frequency counts from lists"]},{"type":"character","attributes":{},"value":["In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Abhijit Dasgupta"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-21"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["python","statistics"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Flattening lists"]},{"type":"character","attributes":{},"value":["In this post, I explore various ways of flattening hierarchical lists in \nPython, contrasting with the built-in `unlist` function in R"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Abhijit Dasgupta"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-23"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["r","python","data munging"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["frequency-counts-from-lists_files/anchor-4.2.2/anchor.min.js","frequency-counts-from-lists_files/bowser-1.9.3/bowser.min.js","frequency-counts-from-lists_files/distill-2.2.21/template.v2.js","frequency-counts-from-lists_files/header-attrs-2.11/header-attrs.js","frequency-counts-from-lists_files/jquery-3.6.0/jquery-3.6.0.js","frequency-counts-from-lists_files/jquery-3.6.0/jquery-3.6.0.min.js","frequency-counts-from-lists_files/jquery-3.6.0/jquery-3.6.0.min.map","frequency-counts-from-lists_files/popper-2.6.0/popper.min.js","frequency-counts-from-lists_files/tippy-6.2.7/tippy-bundle.umd.min.js","frequency-counts-from-lists_files/tippy-6.2.7/tippy-light-border.css","frequency-counts-from-lists_files/tippy-6.2.7/tippy.css","frequency-counts-from-lists_files/tippy-6.2.7/tippy.umd.min.js","frequency-counts-from-lists_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["dat.csv","flattening-lists_files/anchor-4.2.2/anchor.min.js","flattening-lists_files/bowser-1.9.3/bowser.min.js","flattening-lists_files/distill-2.2.21/template.v2.js","flattening-lists_files/header-attrs-2.11/header-attrs.js","flattening-lists_files/jquery-3.6.0/jquery-3.6.0.js","flattening-lists_files/jquery-3.6.0/jquery-3.6.0.min.js","flattening-lists_files/jquery-3.6.0/jquery-3.6.0.min.map","flattening-lists_files/popper-2.6.0/popper.min.js","flattening-lists_files/tippy-6.2.7/tippy-bundle.umd.min.js","flattening-lists_files/tippy-6.2.7/tippy-light-border.css","flattening-lists_files/tippy-6.2.7/tippy.css","flattening-lists_files/tippy-6.2.7/tippy.umd.min.js","flattening-lists_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2066,7 +2066,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Frequency counts from lists","description":"In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**","authors":[{"author":"Abhijit Dasgupta","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-02-21T00:00:00.000-05:00","citationText":"Dasgupta, 2022"}
+{"title":"Flattening lists","description":"In this post, I explore various ways of flattening hierarchical lists in \nPython, contrasting with the built-in `unlist` function in R","authors":[{"author":"Abhijit Dasgupta","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-02-23T00:00:00.000-05:00","citationText":"Dasgupta, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2090,20 +2090,21 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Frequency counts from lists</h1>
+<h1>Flattening lists</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
+  <a href="../../index.html#category:r" class="dt-tag">r</a>
   <a href="../../index.html#category:python" class="dt-tag">python</a>
-  <a href="../../index.html#category:statistics" class="dt-tag">statistics</a>
+  <a href="../../index.html#category:data_munging" class="dt-tag">data munging</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>In this post I look at better ways of obtaining frequency distributions from a Python list, using methods <strong>other than pandas</strong></p></p>
+<p><p>In this post, I explore various ways of flattening hierarchical lists in Python, contrasting with the built-in <code>unlist</code> function in R</p></p>
 </div>
 
 <div class="d-byline">
   Abhijit Dasgupta true 
   
-<br/>2022-02-21
+<br/>2022-02-23
 </div>
 
 <div class="d-article">
@@ -2112,111 +2113,157 @@ document.addEventListener('DOMContentLoaded', function() {
 <h3>Contents</h3>
 <ul>
 <li><a href="#introducing-the-problem">Introducing the problem</a></li>
-<li><a href="#better-ways">Better ways</a>
+<li><a href="#first-attempt">First attempt</a></li>
+<li><a href="#doing-this-in-python">Doing this in Python</a>
 <ul>
-<li><a href="#using-collections">Using collections</a></li>
-<li><a href="#using-numpy">Using numpy</a></li>
-<li><a href="#timings">Timings</a></li>
+<li><a href="#finding-a-resource">Finding a resource</a></li>
+<li><a href="#the-common-method">The common method</a></li>
+<li><a href="#functional-programming-and-reduce">Functional programming and <code>reduce</code></a></li>
+<li><a href="#using-pandas">Using <code>pandas</code></a></li>
+<li><a href="#using-itertools">Using <code>itertools</code></a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 <h1 id="introducing-the-problem">Introducing the problem</h1>
-<p>How to you compute a frequency table from a list in Python? We’ll use a list named <code>dat</code> which is created by sampling the first 5 letters.</p>
+<p>Today, we will focus on the results of splitting text fields by a delimiter in R and Python. This will typically result in a <strong>list of lists</strong>. However, that would not do for my purpose.</p>
+<p>The situation I was facing was to parse a text field containing one or more comma-separated disease names that were afflicting each patient in a study, and I wanted to make a frequency distribution of all the diseases among patients in the study, knowing that each disease would only appear at most once per patient. So I had to <strong>flatten</strong> the list of lists I would get by parsing the text field, so that I could then send it to a tabulation function like <code>table</code> in R or <code>numpy.unique(..., return_counts=True)</code> in Python.</p>
+<h1 id="first-attempt">First attempt</h1>
+<p>Let’s start with a text array containing the data in question.This data is an excerpt from a dataset provided for the <a href="https://sorry.vse.cz/~berka/challenge/pkdd1999/tsumoto.htm">PKDD ’99 Discovery Challenge</a></p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> random.choices(string.ascii_lowercase[:<span class="dv">5</span>], k <span class="op">=</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dat</span> <span class='op'>=</span> <span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>'dat.csv'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+</code></pre>
 </div>
-<p>One way, that I use all the time, is</p>
+<pre><code># A tibble: 6 × 1
+  Diagnosis   
+  &lt;chr&gt;       
+1 RA susp.    
+2 PSS         
+3 SLE         
+4 MCTD        
+5 RA, SLE susp
+6 SLE, MCTD   </code></pre>
+</div>
+<p>There are comma-separated diseases here. We’ll ignore the obvious need to clean the text field of extraneous spaces for now. Let’s try separating out the different diseases.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.Series(dat).value_counts()</span></code></pre></div>
-<pre><code>b    26
-e    22
-c    20
-a    18
-d    14
-dtype: int64</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>$</span><span class='va'>Diagnosis</span>, <span class='st'>","</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
 </div>
-<p>But can you do this without pandas? Turns out, you can</p>
-<h1 id="better-ways">Better ways</h1>
-<h2 id="using-collections">Using collections</h2>
+<pre><code>[[1]]
+[1] &quot;RA susp.&quot;
+
+[[2]]
+[1] &quot;PSS&quot;
+
+[[3]]
+[1] &quot;SLE&quot;
+
+[[4]]
+[1] &quot;MCTD&quot;
+
+[[5]]
+[1] &quot;RA&quot;        &quot; SLE susp&quot;</code></pre>
+</div>
+<p>We see that this is a list of vectors (so we can nominally consider it a list of lists), some of length 1 and some with length more than 1. In order to tabulate the data, all we need is the <code>unlist</code> function.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pd.Series(collections.Counter(dat))</span></code></pre></div>
-<pre><code>d    14
-b    26
-c    20
-a    18
-e    22
-dtype: int64</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>$</span><span class='va'>Diagnosis</span>, <span class='st'>","</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
 </div>
-<p>This creates a Series out of the output of Counter, which is a dict-like object.</p>
-<h2 id="using-numpy">Using numpy</h2>
+<pre><code>
+                     AIHA                  AORTITIS 
+                        1                         1 
+                     MCTD                        RA 
+                        2                         1 
+                  RA susp                       SJS 
+                        1                        11 
+                 SLE susp                   TA susp 
+                        1                         1 
+                 AORTITIS                    BEHCET 
+                        1                         7 
+          BEHCET (òsæSî^)          BEHCET (vasculo) 
+                        1                         1 
+              BEHCET susp                 Hyper CPK 
+                        1                         1 
+                     MCTD                       MRA 
+                        5                         1 
+                       PM                     PM/DM 
+                        3                         3 
+          PN (vasculitis)                       PSS 
+                        1                         6 
+                 PSS susp                PSS(CREST) 
+                        1                         1 
+                       RA                   RA susp 
+                       12                         2 
+                 RA susp.      Raynaud&#39;s phenomenon 
+                        1                         1 
+relapsingü@polychondritis           seronegative RA 
+                        1                         1 
+                      SJS                  SJS susp 
+                       13                         4 
+                      SLE                     Sweet 
+                       30                         1 
+    urticarial vasculitis                vasculitis 
+                        1                         1 </code></pre>
+</div>
+<h4 id="voila">Voila!!!</h4>
+<h1 id="doing-this-in-python">Doing this in Python</h1>
+<p>It turns out, doing a similar operation would also get you a list of lists in Python</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ans <span class="op">=</span> np.unique(dat, return_counts<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> pd.read_csv(<span class="st">&#39;dat.csv&#39;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> dat.Diagnosis.<span class="bu">str</span>.split(<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>d[:<span class="dv">5</span>]</span></code></pre></div>
+<pre><code>0         [RA susp.]
+1              [PSS]
+2              [SLE]
+3             [MCTD]
+4    [RA,  SLE susp]
+Name: Diagnosis, dtype: object</code></pre>
 </div>
-<p>This returns a tuple, which can be converted several ways, per <a href="https://stackoverflow.com/a/39087209">this StackOverflow answer</a></p>
+<p>It turns out, we don’t have an <code>unlist</code> function in Python!!</p>
+<h2 id="finding-a-resource">Finding a resource</h2>
+<p>Google being the all-encompassing deity of knowledge, I turned there and found <a href="https://www.pythonpool.com/flatten-list-python/">this post</a> describing 25 ways to flatten a list (and obviously a Simon and Garfunkel fan). There are a couple of one-liners in that post that I’ll highlight here.</p>
+<h2 id="the-common-method">The common method</h2>
+<p>Searches for this problem most commonly provide the following solution, either as a for-loop or a list comprehension</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.column_stack(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
-<pre><code>  item count
-0    a    18
-1    b    26
-2    c    20
-3    d    14
-4    e    22</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.vstack(ans).T, columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
-<pre><code>  item count
-0    a    18
-1    b    26
-2    c    20
-3    d    14
-4    e    22</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.transpose(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
-<pre><code>  item count
-0    a    18
-1    b    26
-2    c    20
-3    d    14
-4    e    22</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flatten_list <span class="op">=</span> []</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sublist <span class="kw">in</span> d:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> sublist:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        flatten_list.append(item)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>flatten_list[:<span class="dv">8</span>]</span></code></pre></div>
+<pre><code>[&#39;RA susp.&#39;, &#39;PSS&#39;, &#39;SLE&#39;, &#39;MCTD&#39;, &#39;RA&#39;, &#39; SLE susp&#39;, &#39;SLE&#39;, &#39; MCTD&#39;]</code></pre>
 </div>
-<h2 id="timings">Timings</h2>
-<p>Let’s look at timings for each of these methods.</p>
+<h2 id="functional-programming-and-reduce">Functional programming and <code>reduce</code></h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mysetup <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">import pandas as pd</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">import numpy as np</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">import collections, random, string</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">dat = random.choices(string.ascii_lowercase[:5], k=1000)</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">dat1 = pd.Series(dat)</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">reduce</span>(<span class="bu">list</span>.<span class="fu">__add__</span>, d)[:<span class="dv">8</span>]</span></code></pre></div>
+<pre><code>[&#39;RA susp.&#39;, &#39;PSS&#39;, &#39;SLE&#39;, &#39;MCTD&#39;, &#39;RA&#39;, &#39; SLE susp&#39;, &#39;SLE&#39;, &#39; MCTD&#39;]</code></pre>
 </div>
+<p>Functional programming provides functions <em>that act on functions</em>. Here, the <code>reduce</code> function applies the <code>list.__add__</code> function recursively to successive elements of <code>d</code>, noting that <em>adding</em> two lists serves to concatenate them in Python.</p>
+<p>A variant on this theme that works is</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(dat).value_counts()&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.00046380726499955924</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(collections.Counter(dat))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.000220889652000551</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.column_stack(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.00025998155500019495</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.vstack(np.unique(dat, return_counts=True)).T)&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.0002631664059990726</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.transpose(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.0002664510020003945</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(d, [])[:<span class="dv">8</span>]</span></code></pre></div>
+<pre><code>[&#39;RA susp.&#39;, &#39;PSS&#39;, &#39;SLE&#39;, &#39;MCTD&#39;, &#39;RA&#39;, &#39; SLE susp&#39;, &#39;SLE&#39;, &#39; MCTD&#39;]</code></pre>
 </div>
-<p>So we can see that my <em>usual</em> strategy is half as efficient as the other strategies described in this post !!</p>
-<p>What about if we start with a pandas Series anyway, and forgo the casting into a pandas structure?</p>
+<p>since the <code>sum</code> function applies addition recursively from a starting value, which is the second argument. Here the addition operation is overloaded for lists to concatenate lists.</p>
+<h2 id="using-pandas">Using <code>pandas</code></h2>
+<p><strong>pandas</strong> does have a <code>flatten</code> function hidden in its depths</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&quot;dat1.value_counts()&quot;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.0003267870910003694</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&quot;collections.Counter(dat1)&quot;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>9.801131499989425e-05</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas.core.common <span class="im">import</span> flatten</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(flatten(d))[:<span class="dv">8</span>]</span></code></pre></div>
+<pre><code>[&#39;RA susp.&#39;, &#39;PSS&#39;, &#39;SLE&#39;, &#39;MCTD&#39;, &#39;RA&#39;, &#39; SLE susp&#39;, &#39;SLE&#39;, &#39; MCTD&#39;]</code></pre>
 </div>
-<p>Even here, the <strong>pandas</strong> method is at quite the disadvantage.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="using-itertools">Using <code>itertools</code></h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(itertools.chain(<span class="op">*</span>d))[:<span class="dv">8</span>]</span></code></pre></div>
+<pre><code>[&#39;RA susp.&#39;, &#39;PSS&#39;, &#39;SLE&#39;, &#39;MCTD&#39;, &#39;RA&#39;, &#39; SLE susp&#39;, &#39;SLE&#39;, &#39; MCTD&#39;]</code></pre>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
