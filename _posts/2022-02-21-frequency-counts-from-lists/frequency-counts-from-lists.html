@@ -112,7 +112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","categories"]}},"value":[{"type":"character","attributes":{},"value":["Frequency counts from lists"]},{"type":"character","attributes":{},"value":["In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Abhijit Dasgupta"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-21"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["Python"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft","categories"]}},"value":[{"type":"character","attributes":{},"value":["Frequency counts from lists"]},{"type":"character","attributes":{},"value":["In this post I look at better ways of obtaining frequency distributions from a Python list, using methods **other than pandas**\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Abhijit Dasgupta"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2022-02-21"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["python","statistics"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1472,12 +1472,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Frequency counts from lists</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">Python</div>
+<div class="dt=tag">python</div>
+<div class="dt=tag">statistics</div>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>In this post I look at better ways of obtaining frequency
-distributions from a Python list, using methods <strong>other than
-pandas</strong></p></p>
+<p><p>In this post I look at better ways of obtaining frequency distributions from a Python list, using methods <strong>other than pandas</strong></p></p>
 </div>
 
 <div class="d-byline">
@@ -1502,25 +1501,21 @@ pandas</strong></p></p>
 </nav>
 </div>
 <h1 id="introducing-the-problem">Introducing the problem</h1>
-<p>How to you compute a frequency table from a list in Python? We’ll use
-a list named <code>dat</code> which is created by sampling the first 5
-letters.</p>
+<p>How to you compute a frequency table from a list in Python? We’ll use a list named <code>dat</code> which is created by sampling the first 5 letters.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dat <span class="op">=</span> random.choices(string.ascii_lowercase[:<span class="dv">5</span>], k <span class="op">=</span> <span class="dv">100</span>)</span></code></pre></div>
 </div>
 <p>One way, that I use all the time, is</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.Series(dat).value_counts()</span></code></pre></div>
-<pre><code>e    25
-b    22
-a    20
-c    19
+<pre><code>b    26
+e    22
+c    20
+a    18
 d    14
 dtype: int64</code></pre>
 </div>
@@ -1528,58 +1523,49 @@ dtype: int64</code></pre>
 <h1 id="better-ways">Better ways</h1>
 <h2 id="using-collections">Using collections</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pd.Series(collections.Counter(dat))</span></code></pre></div>
-<pre><code>e    25
-b    22
-c    19
-d    14
-a    20
+<pre><code>d    14
+b    26
+c    20
+a    18
+e    22
 dtype: int64</code></pre>
 </div>
-<p>This creates a Series out of the output of Counter, which is a
-dict-like object.</p>
+<p>This creates a Series out of the output of Counter, which is a dict-like object.</p>
 <h2 id="using-numpy">Using numpy</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ans <span class="op">=</span> np.unique(dat, return_counts<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </div>
-<p>This returns a tuple, which can be converted several ways, per <a
-href="https://stackoverflow.com/a/39087209">this StackOverflow
-answer</a></p>
+<p>This returns a tuple, which can be converted several ways, per <a href="https://stackoverflow.com/a/39087209">this StackOverflow answer</a></p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.column_stack(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.column_stack(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
 <pre><code>  item count
-0    a    20
-1    b    22
-2    c    19
+0    a    18
+1    b    26
+2    c    20
 3    d    14
-4    e    25</code></pre>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.vstack(ans).T, columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
+4    e    22</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.vstack(ans).T, columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
 <pre><code>  item count
-0    a    20
-1    b    22
-2    c    19
+0    a    18
+1    b    26
+2    c    20
 3    d    14
-4    e    25</code></pre>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.transpose(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
+4    e    22</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.transpose(ans), columns <span class="op">=</span> [<span class="st">&#39;item&#39;</span>,<span class="st">&#39;count&#39;</span>])</span></code></pre></div>
 <pre><code>  item count
-0    a    20
-1    b    22
-2    c    19
+0    a    18
+1    b    26
+2    c    20
 3    d    14
-4    e    25</code></pre>
+4    e    22</code></pre>
 </div>
 <h2 id="timings">Timings</h2>
 <p>Let’s look at timings for each of these methods.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mysetup <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">import pandas as pd</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">import numpy as np</span></span>
@@ -1589,38 +1575,27 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a h
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(dat).value_counts()&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.0005792085190000002</code></pre>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(collections.Counter(dat))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.00025398987399999974</code></pre>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.column_stack(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.0002821108809999999</code></pre>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.vstack(np.unique(dat, return_counts=True)).T)&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.00027867445300000027</code></pre>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.transpose(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.0002735296419999997</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(dat).value_counts()&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.00046380726499955924</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.Series(collections.Counter(dat))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.000220889652000551</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.column_stack(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.00025998155500019495</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.vstack(np.unique(dat, return_counts=True)).T)&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.0002631664059990726</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&#39;pd.DataFrame(np.transpose(np.unique(dat, return_counts=True)))&#39;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.0002664510020003945</code></pre>
 </div>
-<p>So we can see that my <em>usual</em> strategy is half as efficient as
-the other strategies described in this post !!</p>
-<p>What about if we start with a pandas Series anyway, and forgo the
-casting into a pandas structure?</p>
+<p>So we can see that my <em>usual</em> strategy is half as efficient as the other strategies described in this post !!</p>
+<p>What about if we start with a pandas Series anyway, and forgo the casting into a pandas structure?</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&quot;dat1.value_counts()&quot;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.0003499007340000002</code></pre>
-<div class="sourceCode" id="cb26"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&quot;collections.Counter(dat1)&quot;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
-<pre><code>0.00011676514499999957</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&quot;dat1.value_counts()&quot;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>0.0003267870910003694</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">&quot;collections.Counter(dat1)&quot;</span>, setup<span class="op">=</span>mysetup, number<span class="op">=</span><span class="dv">1000</span>)<span class="op">/</span><span class="dv">1000</span></span></code></pre></div>
+<pre><code>9.801131499989425e-05</code></pre>
 </div>
-<p>Even here, the <strong>pandas</strong> method is at quite the
-disadvantage.</p>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Even here, the <strong>pandas</strong> method is at quite the disadvantage.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

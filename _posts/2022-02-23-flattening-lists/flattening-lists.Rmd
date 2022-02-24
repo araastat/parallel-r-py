@@ -12,10 +12,9 @@ output:
     self_contained: false
     toc: true
     toc_float: true
-draft: true
 categories:
-  - R
-  - Python
+  - r
+  - python
   - data munging
 ---
 
