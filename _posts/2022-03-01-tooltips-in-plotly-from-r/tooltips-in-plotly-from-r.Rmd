@@ -1,0 +1,74 @@
+---
+title: "Tooltips using ggplotly"
+description: |
+  In this post I highlight how to format tooltips from the ggplotly interface
+  to plotly from R
+author:
+  - name: Abhijit Dasgupta
+    url: {}
+date: 2022-03-01
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - r
+  - data visualization
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, messages=TRUE, warning = FALSE)
+```
+
+You can incorporate and format tooltips in the `ggplotly` interface. The `ggplotly`
+function has a `tooltip` option that can be inhabited by aesthetics in the 
+`ggplot` code. By default it shows all the aesthetics specified in the ggplot code. 
+
+In the following plot, all of the aesthetics (`bill_length_mm`, `body_mass_g` and `species`) are displayed in the tooltips.
+
+```{r}
+pacman::p_load(plotly, ggplot2, palmerpenguins)
+plt <- ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g))+
+	geom_point(aes(color = species)) + 
+	labs(x = 'Bill length (mm)', y = 'Body mass (g)', 
+		 title = 'Penguins')
+
+ggplotly(plt)
+```
+
+You can specify particular variables to display in tooltips using the `tooltips` 
+option in `ggplotly`
+
+```{r}
+pacman::p_load(plotly, ggplot2, palmerpenguins)
+plt <- ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g))+
+	geom_point(aes(color = species)) + 
+	labs(x = 'Bill length (mm)', y = 'Body mass (g)', 
+		 title = 'Penguins')
+
+ggplotly(plt, tooltip = c('x','y'))
+
+```
+
+One can trick `ggplotly` to format a tooltip, using the `text` aesthetic. You can use
+this in geometries where `text` doesn't have an effect, and you can format this
+aesthetic using R methods, like `glue::glue` and `format`
+
+```{r, warning=TRUE}
+pacman::p_load(plotly, ggplot2, palmerpenguins)
+plt <- ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g))+
+	geom_point(aes(
+	  color = species, 
+		text = glue::glue("<b>{species}</b><br>Body mass: {body_mass_g} g<br>Bill length {bill_length_mm} mm"))) + 
+	labs(x = 'Bill length (mm)', y = 'Body mass (g)', 
+		 title = 'Penguins')
+
+ggplotly(plt, tooltip = c('text'))
+
+```
+
+> If you just try to run the ggplot2 code, you'll get the warning "Ignoring unknown
+aesthetics: text". We're taking advantage of this to allow it to not show in the plot
+but provide tooltip data to `ggplotly`
+
+
