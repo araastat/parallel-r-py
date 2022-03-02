@@ -15,6 +15,9 @@ categories:
   - data visualization
 ---
 
+```{css}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, messages=TRUE, warning = FALSE)
