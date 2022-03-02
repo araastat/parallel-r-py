@@ -18,6 +18,8 @@ categories:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, messages=TRUE, warning = FALSE)
+library(ggplot2)
+theme_set(theme_bw() + theme(text = element_text(family='Roboto Slab')))
 ```
 
 You can incorporate and format tooltips in the `ggplotly` interface. The `ggplotly`
